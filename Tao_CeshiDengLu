@@ -1,0 +1,37 @@
+#!/bin/bash
+#**************************************************************
+# THis file is written by FuShiJia 2015-12-31(TEL:18591925717)*
+# This file is prepared for Client of ThreeAndOne login test  *
+#**************************************************************
+n=1
+while (true)
+do
+{
+	
+  #************************************************************
+  # Record 'umm-client.lex' process number                    *
+  #************************************************************
+  process=`pgrep umm-client.lex`
+  if [ X"$process" == "X" ]
+  then
+  {
+    echo "the umm-client.lex's process is null!"
+    exit 1
+  }
+  else
+  {
+    echo "the umm-client.lex's process is not null!"
+    echo "this is the ${n} times to run ,motherfucker!!!"
+    cd /opt/umm_vrv/gui/
+    ./vrvlocalmanager & >>/dev/null
+    sleep 3 
+    pkill vrvlocalmanager
+    sleep 3
+  }
+  fi
+  #************************************************************
+  # count the number of how many times have run this script   *
+  #************************************************************
+  ((n++))
+}
+done 
