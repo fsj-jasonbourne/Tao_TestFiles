@@ -1,0 +1,32 @@
+#/bin/bash
+#*********************************************************
+#This script file is only for my project ThreeAndOne            *
+# How stupid and ugly this Project is !                  *
+#*********************************************************
+process=`pgrep umm-client.lex`
+n=1
+while (true)
+do
+{
+  if [ ${process} == 0 ]
+  then
+  {
+    echo "the umm-client.lex's process is null!"
+  }
+  else
+  {
+    echo "the umm-client.lex's process is not null!"
+    echo "this is the ${n} times to run ,motherfucker!!!"
+    cd /opt/umm_vrv/gui/
+    ./vrvlocalmanager & >>/dev/null
+    sleep 1
+    pkill vrvlocalmanager
+    fi
+    sleep 3
+    ((n++));
+  }
+}
+done
+
+echo "umm process is ${process}" >>/dev/null
+
